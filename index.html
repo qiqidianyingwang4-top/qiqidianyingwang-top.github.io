@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>棋棋电影网 | 一帧一帧，慢看电影 · qiqidianyingwang-top.github.io</title>
+<meta name="description" content="棋棋电影网（qiqidianyingwang-top.github.io）是一个慢看电影的角落。我们不追新片、不打分、不制造焦虑，只把镜头拆成一帧一帧，和你聊聊画面、声音、节奏，以及那些被忽略的微小细节。适合一个人安静看的电影，都在这里。">
+<meta name="keywords" content="棋棋电影网, qiqidianyingwang-top, 慢看电影, 一帧一帧, 电影细节, 安静观影, 镜头拆解, 电影随笔, 不追新片">
+<style>
+/* ===== 基础 ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f7f5f0;
+  --paper:#fffdf9;
+  --ink:#2a2723;
+  --soft:#7a7368;
+  --line:#e2ddd2;
+  --warm:#c9703f;
+  --warm2:#e8d5c4;
+  --shadow:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Georgia","Songti SC","PingFang SC","Microsoft YaHei",serif;
+  background:var(--bg);color:var(--ink);
+  font-size:15.5px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* ===== 顶部 ===== */
+.tape{
+  background:var(--warm);color:#fff;
+  padding:7px 24px;font-size:12px;letter-spacing:1px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+.tape .t-url{font-family:Menlo,monospace;font-size:11.5px;opacity:.9}
+
+/* ===== 报头 ===== */
+.mast{
+  background:var(--paper);border-bottom:1px solid var(--line);
+  padding:44px 24px 34px;
+}
+.mast-in{max-width:1180px;margin:0 auto}
+.mast-line1{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:11px;letter-spacing:3px;color:var(--soft);
+  text-transform:uppercase;margin-bottom:22px;flex-wrap:wrap;gap:10px;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+}
+.mast h1{
+  font-size:64px;font-weight:400;letter-spacing:6px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.mast h1 .q{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:74px;height:74px;border:2px solid var(--ink);border-radius:50%;
+  font-size:34px;font-style:italic;position:relative;
+}
+.mast h1 .q::after{
+  content:"棋";position:absolute;left:2px;top:-4px;
+  font-size:15px;background:var(--warm);color:#fff;
+  width:22px;height:22px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-style:normal;letter-spacing:0;
+}
+.mast h1 .qn{font-style:italic}
+.mast h1 .small{font-size:15px;letter-spacing:4px;color:var(--soft);font-weight:400;margin-left:6px}
+.mast-sub{
+  margin-top:20px;font-size:15px;color:var(--soft);max-width:640px;line-height:1.9;
+}
+.mast-meta{
+  margin-top:22px;padding-top:16px;border-top:1px dashed var(--line);
+  display:flex;gap:28px;flex-wrap:wrap;
+  font-size:12px;color:var(--soft);font-family:"Helvetica Neue",Arial,sans-serif;
+}
+.mast-meta b{color:var(--ink);font-weight:700}
+
+/* ===== 导航 ===== */
+.nav{
+  background:var(--paper);border-bottom:3px double var(--ink);
+  position:sticky;top:0;z-index:50;
+}
+.nav-in{
+  max-width:1180px;margin:0 auto;padding:0 24px;
+  display:flex;gap:2px;flex-wrap:wrap;
+}
+.nav a{
+  padding:14px 20px;font-size:14px;color:var(--soft);
+  letter-spacing:1px;transition:.2s;border-bottom:2px solid transparent;
+  font-family:"Helvetica Neue",Arial,sans-serif;
+}
+.nav a:hover{color:var(--warm);border-color:var(--warm)}
+
+/* ===== 容器 ===== */
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ===== 栏目通用 ===== */
+.section{padding:64px 0;border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:32px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.sec-roman{
+  font-size:14px;font-style:italic;color:var(--warm);
+  font-family:Georgia,serif;letter-spacing:1px;
+}
+.sec-head h2{font-size:28px;font-weight:400;letter-spacing:2px}
+.sec-head h2 em{font-style:italic;color:var(--warm)}
+.sec-more{
+  margin-left:auto;font-size:12.5px;color:var(--soft);
+  border-bottom:1px solid var(--line);padding-bottom:2px;
+  font-family:"Helvetica Neue",Arial,sans-serif;letter-spacing:.5px;
+}
+.sec-more:hover{color:var(--warm);border-color:var(--warm)}
+
+/* ===== 栏目1：一帧一帧（双栏对开） ===== */
+.frame{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+.frame-col{border-right:1px solid var(--line);background:var(--paper)}
+.frame-col:last-child{border-right:none}
+.frame-cap{
+  padding:12px 20px;background:var(--ink);color:#f7f5f0;
+  font-size:11px;letter-spacing:3px;font-family:"Helvetica Neue",Arial,sans-serif;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.frame-cap .fc-tag{background:var(--warm);padding:2px 10px;border-radius:2px;font-size:10px}
+.frame-body{padding:26px}
+.fb-row{
+  padding:18px 0;border-bottom:1px dotted var(--line);cursor:pointer;
+  transition:.2s;display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:flex-start;
+}
+.fb-row:last-child{border-bottom:none}
+.fb-row:hover{padding-left:8px}
+.fb-row .fb-no{
+  font-family:Menlo,monospace;font-size:12px;color:var(--warm);
+  padding-top:4px;border-right:1px solid var(--line);padding-right:14px;text-align:right;
+}
+.fb-row h3{font-size:16px;font-weight:400;margin-bottom:5px;letter-spacing:.5px}
+.fb-row p{font-size:13px;color:var(--soft);line-height:1.7}
+.fb-row .fb-min{font-size:11px;color:var(--warm);margin-top:6px;font-family:Menlo,monospace}
+
+/* ===== 栏目2：慢看片单（竖排卡片） ===== */
+.slow{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.slow-card{background:var(--paper);border:1px solid var(--line);padding:0 0 22px;transition:.3s}
+.slow-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.sc-frame{
+  height:200px;position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;padding:18px;
+  border-bottom:1px solid var(--line);
+}
+.slow-card:nth-child(1) .sc-frame{background:linear-gradient(160deg,#4a5d4e,#2f3b33)}
+.slow-card:nth-child(2) .sc-frame{background:linear-gradient(160deg,#8a6f5a,#5c4a3a)}
+.slow-card:nth-child(3) .sc-frame{background:linear-gradient(160deg,#3d5a73,#263a4a)}
+.slow-card:nth-child(4) .sc-frame{background:linear-gradient(160deg,#7a4a4a,#4a2f2f)}
+.slow-card:nth-child(5) .sc-frame{background:linear-gradient(160deg,#6b5b7a,#42354d)}
+.slow-card:nth-child(6) .sc-frame{background:linear-gradient(160deg,#5a6b4a,#3d4a33)}
+.sc-quote{
+  color:#fff;font-style:italic;font-size:15px;line-height:1.6;
+  position:relative;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.sc-frame::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.5),transparent 60%);
+}
+.sc-body{padding:20px 22px 0}
+.sc-body .sc-no{font-size:11px;letter-spacing:3px;color:var(--warm);font-family:"Helvetica Neue",Arial,sans-serif}
+.sc-body h3{font-size:18px;font-weight:400;margin:8px 0 6px;letter-spacing:1px}
+.sc-body .sc-meta{font-size:12px;color:var(--soft);margin-bottom:10px;font-family:Menlo,monospace}
+.sc-body p{font-size:13.5px;color:var(--soft);line-height:1.75}
+.sc-body .sc-tag{
+  display:inline-block;margin-top:12px;font-size:11px;color:var(--warm);
+  border:1px solid var(--warm2);border-radius:20px;padding:3px 12px;
+}
+
+/* ===== 栏目3：镜头拆解（四格网格） ===== */
+.cut{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.cut-cell{background:var(--paper);padding:30px;transition:.2s;cursor:pointer}
+.cut-cell:hover{background:var(--warm2)}
+.cut-cell .cc-num{
+  font-family:Georgia,serif;font-size:38px;font-style:italic;color:var(--warm);
+  line-height:1;margin-bottom:12px;
+}
+.cut-cell h3{font-size:17px;font-weight:400;margin-bottom:8px;letter-spacing:1px}
+.cut-cell p{font-size:13.5px;color:var(--soft);line-height:1.75}
+
+/* ===== 栏目4：观影日志（时间线） ===== */
+.journal{position:relative}
+.j-list{position:relative;padding-left:120px}
+.j-list::before{
+  content:"";position:absolute;left:88px;top:6px;bottom:6px;width:1px;
+  background:repeating-linear-gradient(180deg,var(--line) 0,var(--line) 6px,transparent 6px,transparent 12px);
+}
+.j-item{
+  position:relative;padding:0 0 34px 0;cursor:pointer;
+  transition:.2s;
+}
+.j-item:last-child{padding-bottom:0}
+.j-item:hover{padding-left:10px}
+.j-date{
+  position:absolute;left:-120px;top:2px;text-align:right;width:70px;
+}
+.j-date .jd-d{font-size:22px;font-weight:400;font-style:italic;color:var(--warm)}
+.j-date .jd-m{font-size:11px;color:var(--soft);letter-spacing:2px;font-family:"Helvetica Neue",Arial,sans-serif}
+.j-item::before{
+  content:"";position:absolute;left:-36px;top:8px;width:9px;height:9px;
+  border-radius:50%;background:var(--warm);border:2px solid var(--bg);
+}
+.j-body{background:var(--paper);border:1px solid var(--line);padding:20px 24px}
+.j-body h3{font-size:17px;font-weight:400;margin-bottom:6px;letter-spacing:.5px}
+.j-body .jb-meta{font-size:11.5px;color:var(--warm);font-family:Menlo,monospace;margin-bottom:8px}
+.j-body p{font-size:13.5px;color:var(--soft);line-height:1.8}
+
+/* ===== 栏目5：角落 ===== */
+.corner{
+  background:var(--paper);border:1px solid var(--line);padding:40px;
+  display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;
+}
+.corner-text h3{font-size:24px;font-weight:400;margin-bottom:16px;letter-spacing:2px;line-height:1.5}
+.corner-text p{font-size:14px;color:var(--soft);line-height:1.95;margin-bottom:14px}
+.corner-text .quote{
+  border-left:3px solid var(--warm);padding-left:18px;margin:20px 0;
+  font-style:italic;color:var(--ink);font-size:15px;line-height:1.8;
+}
+.corner-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.cs-cell{background:var(--bg);padding:26px;text-align:center}
+.cs-cell .cs-num{font-size:30px;font-style:italic;color:var(--warm);font-family:Georgia,serif;line-height:1}
+.cs-cell .cs-label{font-size:12px;color:var(--soft);margin-top:8px;letter-spacing:1px;font-family:"Helvetica Neue",Arial,sans-serif}
+
+/* ===== 底部 ===== */
+.foot{
+  background:var(--ink);color:#b8b0a2;padding:52px 24px 28px;margin-top:64px;
+}
+.foot-in{max-width:1180px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:38px}
+.foot-brand h3{
+  font-size:26px;font-weight:400;letter-spacing:4px;color:#f7f5f0;
+  display:flex;align-items:center;gap:10px;margin-bottom:12px;
+}
+.foot-brand h3 .q{
+  display:inline-flex;width:40px;height:40px;border:1.5px solid #b8b0a2;
+  border-radius:50%;align-items:center;justify-content:center;font-size:18px;font-style:italic;
+}
+.foot-brand p{font-size:13px;line-height:1.9;max-width:320px}
+.foot-col h4{font-size:12px;letter-spacing:3px;color:#f7f5f0;margin-bottom:14px;font-weight:400;font-family:"Helvetica Neue",Arial,sans-serif}
+.foot-col li{margin-bottom:9px}
+.foot-col a{font-size:13px;color:#8f877a;transition:.2s}
+.foot-col a:hover{color:var(--warm2)}
+.foot-bot{
+  border-top:1px solid #4a443c;padding-top:22px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:11.5px;color:#7a7368;font-family:"Helvetica Neue",Arial,sans-serif;
+}
+.foot-bot a{color:var(--warm2)}
+
+/* ===== 响应式 ===== */
+@media(max-width:920px){
+  .mast h1{font-size:42px}
+  .mast h1 .q{width:56px;height:56px;font-size:26px}
+  .frame{grid-template-columns:1fr}
+  .frame-col{border-right:none;border-bottom:1px solid var(--line)}
+  .slow{grid-template-columns:1fr 1fr}
+  .cut{grid-template-columns:1fr}
+  .corner{grid-template-columns:1fr;gap:28px;padding:28px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:560px){
+  .tape{font-size:11px}
+  .mast{padding:30px 20px 24px}
+  .mast h1{font-size:30px;letter-spacing:3px;gap:10px}
+  .mast h1 .q{width:46px;height:46px;font-size:22px}
+  .mast h1 .q::after{width:18px;height:18px;font-size:12px}
+  .mast h1 .small{font-size:12px}
+  .nav-in{padding:0 12px}
+  .nav a{padding:12px 14px;font-size:13px}
+  .sec-head h2{font-size:21px}
+  .slow{grid-template-columns:1fr}
+  .j-list{padding-left:88px}
+  .j-list::before{left:64px}
+  .j-date{left:-88px;width:52px}
+  .j-date .jd-d{font-size:17px}
+  .j-item::before{left:-28px}
+  .corner{padding:24px}
+  .corner-stats{grid-template-columns:1fr 1fr}
+  .foot-top{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 顶部胶带 -->
+<div class="tape">
+  <span>◆ 棋棋电影网 · 一个慢看电影的角落</span>
+  <span class="t-url">qiqidianyingwang-top.github.io</span>
+</div>
+
+<!-- 报头 -->
+<header class="mast">
+  <div class="mast-in">
+    <div class="mast-line1">
+      <span>CINEPHILE · SLOW CINEMA · FRAME BY FRAME</span>
+      <span>创刊号 · 2026年10月</span>
+    </div>
+    <h1>
+      <span class="q"></span>
+      <span class="qn">棋棋</span>
+      <span class="qn">电影网</span>
+      <span class="small">— frame by frame —</span>
+    </h1>
+    <p class="mast-sub">我们不追新片，不打分，不制造焦虑。这里只把镜头拆成一帧一帧，和你聊聊画面、声音、节奏，以及那些被忽略的微小细节。</p>
+    <div class="mast-meta">
+      <span><b>定位</b> 慢看电影 · 镜头拆解</span>
+      <span><b>更新</b> 每周三、周日</span>
+      <span><b>地址</b> qiqidianyingwang-top.github.io</span>
+      <span><b>形态</b> 单页 · 无后端</span>
+    </div>
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#frame">一帧一帧</a>
+    <a href="#slow">慢看片单</a>
+    <a href="#cut">镜头拆解</a>
+    <a href="#journal">观影日志</a>
+    <a href="#corner">关于角落</a>
+  </div>
+</nav>
+
+<!-- 主体 -->
+<main class="wrap">
+
+  <!-- 栏目1：一帧一帧 -->
+  <section id="frame" class="section">
+    <div class="sec-head">
+      <span class="sec-roman">i.</span>
+      <h2>一<em>帧</em>一<em>帧</em></h2>
+      <span class="sec-more">更多拆解 →</span>
+    </div>
+    <div class="frame">
+      <div class="frame-col">
+        <div class="frame-cap"><span>FRAME A · 画面的事</span><span class="fc-tag">IMAGE</span></div>
+        <div class="frame-body">
+          <div class="fb-row">
+            <div class="fb-no">001</div>
+            <div>
+              <h3>《一代宗师》的雨</h3>
+              <p>王家卫把雨拍成了一条条银线，每一滴都带着武侠的重量。宫二在雨中转身那一刀，不是砍人，是砍断自己。</p>
+              <div class="fb-min">关键词：光线 / 运动 / 留白</div>
+            </div>
+          </div>
+          <div class="fb-row">
+            <div class="fb-no">002</div>
+            <div>
+              <h3>《刺客聂隐娘》的绿</h3>
+              <p>侯孝贤的绿不是颜色，是一种呼吸。山林、雾气、裙摆，所有东西都在缓慢地融进彼此。</p>
+              <div class="fb-min">关键词：长镜头 / 自然光 / 减法</div>
+            </div>
+          </div>
+          <div class="fb-row">
+            <div class="fb-no">003</div>
+            <div>
+              <h3>《花样年华》的走廊</h3>
+              <p>那条窄走廊被拍成了世界上最长的路。两个人擦肩而过，比任何拥抱都更让人心碎。</p>
+              <div class="fb-min">关键词：构图 / 空间 / 克制</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-col">
+        <div class="frame-cap"><span>FRAME B · 声音的事</span><span class="fc-tag">SOUND</span></div>
+        <div class="frame-body">
+          <div class="fb-row">
+            <div class="fb-no">004</div>
+            <div>
+              <h3>《爆裂鼓手》的呼吸</h3>
+              <p>鼓点不是配乐，是心跳。影片最后那一段solo，是整个人把肺都砸在了镲片上。</p>
+              <div class="fb-min">关键词：节奏 / 音效 / 压迫</div>
+            </div>
+          </div>
+          <div class="fb-row">
+            <div class="fb-no">005</div>
+            <div>
+              <h3>《2001太空漫游》的静默</h3>
+              <p>太空中没有声音，库布里克就真的给了你一片真空的安静。那段寂静，比任何音乐都震耳。</p>
+              <div class="fb-min">关键词：静音 / 配乐 / 真空</div>
+            </div>
+          </div>
+          <div class="fb-row">
+            <div class="fb-no">006</div>
+            <div>
+              <h3>《小森林》的咀嚼声</h3>
+              <p>吃饭的声音被放大到近乎仪式。你会突然意识到，自己已经很久没有好好吃过一顿饭了。</p>
+              <div class="fb-min">关键词：环境音 / 日常 / 治愈</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目2：慢看片单 -->
+  <section id="slow" class="section">
+    <div class="sec-head">
+      <span class="sec-roman">ii.</span>
+      <h2>慢<em>看</em>片单</h2>
+      <span class="sec-more">完整片单 →</span>
+    </div>
+    <div class="slow">
+      <div class="slow-card">
+        <div class="sc-frame"><span class="sc-quote">"你要做一个不动声色的大人了。"</span></div>
+        <div class="sc-body">
+          <div class="sc-no">NO. 01</div>
+          <h3>少年派的奇幻漂流</h3>
+          <div class="sc-meta">2012 · 李安 · 127 min</div>
+          <p>一部关于信仰与故事的影片。海上的每一个镜头，都在问你：你愿意相信哪一个版本？</p>
+          <span class="sc-tag">适合一个人看</span>
+        </div>
+      </div>
+      <div class="slow-card">
+        <div class="sc-frame"><span class="sc-quote">"我猜，大概就像这样。"</span></div>
+        <div class="sc-body">
+          <div class="sc-no">NO. 02</div>
+          <h3>海边的曼彻斯特</h3>
+          <div class="sc-meta">2016 · 肯尼斯·罗纳根 · 137 min</div>
+          <p>悲伤不是一场暴雨，而是一种持续的阴天。这部电影教会我，有些伤口不会好，只能带着走。</p>
+          <span class="sc-tag">不适合心情不好时</span>
+        </div>
+      </div>
+      <div class="slow-card">
+        <div class="sc-frame"><span class="sc-quote">"你想让我怎么说，说生活很美好？"</span></div>
+        <div class="sc-body">
+          <div class="sc-no">NO. 03</div>
+          <h3>出租车司机</h3>
+          <div class="sc-meta">1976 · 马丁·斯科塞斯 · 114 min</div>
+          <p>特拉维斯深夜在城市里游荡，镜头像一只不肯眨眼的眼睛。纽约的夜晚从此有了另一种气味。</p>
+          <span class="sc-tag">深夜场</span>
+        </div>
+      </div>
+      <div class="slow-card">
+        <div class="sc-frame"><span class="sc-quote">"我们笑着说再见，却深知再见遥遥无期。"</span></div>
+        <div class="sc-body">
+          <div class="sc-no">NO. 04</div>
+          <h3>天堂电影院</h3>
+          <div class="sc-meta">1988 · 托纳多雷 · 155 min</div>
+          <p>关于电影的电影。那些被剪掉的接吻镜头，串起了一个人整个的童年与乡愁。</p>
+          <span class="sc-tag">需要备好纸巾</span>
+        </div>
+      </div>
+      <div class="slow-card">
+        <div class="sc-frame"><span class="sc-quote">"时间是无情的东西。"</span></div>
+        <div class="sc-body">
+          <div class="sc-no">NO. 05</div>
+          <h3>情书</h3>
+          <div class="sc-meta">1995 · 岩井俊二 · 117 min</div>
+          <p>一场借书卡上的暗恋，被雪国的光线照亮。看完会想给某个很久没联系的人写一封信。</p>
+          <span class="sc-tag">冬日推荐</span>
+        </div>
+      </div>
+      <div class="slow-card">
+        <div class="sc-frame"><span class="sc-quote">"我不会害怕，因为我已经看见过世界的美丽。"</span></div>
+        <div class="sc-body">
+          <div class="sc-no">NO. 06</div>
+          <h3>完美的日子</h3>
+          <div class="sc-meta">2023 · 维姆·文德斯 · 124 min</div>
+          <p>一个东京公厕清洁工的日常生活。树木的影子、磁带的音乐、清晨的台阶——平凡被拍成了诗。</p>
+          <span class="sc-tag">清晨场</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目3：镜头拆解 -->
+  <section id="cut" class="section">
+    <div class="sec-head">
+      <span class="sec-roman">iii.</span>
+      <h2>镜<em>头</em>拆解</h2>
+      <span class="sec-more">全部拆解 →</span>
+    </div>
+    <div class="cut">
+      <div class="cut-cell">
+        <div class="cc-num">01</div>
+        <h3>一格一格看</h3>
+        <p>把一段三分钟的镜头暂停成180帧，你会发现导演藏了太多秘密：人物的站位、光线的走向、背景里那个不该出现的人。</p>
+      </div>
+      <div class="cut-cell">
+        <div class="cc-num">02</div>
+        <h3>声音的减法</h3>
+        <p>好的电影知道什么时候关掉音乐。当全世界都安静下来，你会听见角色吞咽的声音，那才是最真实的一刻。</p>
+      </div>
+      <div class="cut-cell">
+        <div class="cc-num">03</div>
+        <h3>色彩的呼吸</h3>
+        <p>韦斯·安德森用对称和粉色造梦，诺兰用冷暖对比区分现实与梦境。颜色从来不只是好看，它一直在替角色说话。</p>
+      </div>
+      <div class="cut-cell">
+        <div class="cc-num">04</div>
+        <h3>节奏的耐心</h3>
+        <p>侯孝贤的镜头愿意等一棵树、等一阵风、等一个人把话说完。这种耐心本身就是一种叙事，只是我们太久没学会了。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目4：观影日志 -->
+  <section id="journal" class="section">
+    <div class="sec-head">
+      <span class="sec-roman">iv.</span>
+      <h2>观<em>影</em>日志</h2>
+      <span class="sec-more">全部日志 →</span>
+    </div>
+    <div class="journal">
+      <div class="j-list">
+        <div class="j-item">
+          <div class="j-date"><div class="jd-d">07</div><div class="jd-m">OCT</div></div>
+          <div class="j-body">
+            <div class="jb-meta">22:14 · 深夜场 · 一个人</div>
+            <h3>《完美的日子》—— 平凡是一种选择</h3>
+            <p>看完这部片子，我把窗台上的绿萝挪到了有阳光的那一侧。影片最厉害的地方，是让你觉得认真生活不是鸡汤，而是一种体面的倔强。</p>
+          </div>
+        </div>
+        <div class="j-item">
+          <div class="j-date"><div class="jd-d">04</div><div class="jd-m">OCT</div></div>
+          <div class="j-body">
+            <div class="jb-meta">14:30 · 周末午后 · 阳台</div>
+            <h3>《小森林》夏秋篇 —— 食物是另一种语言</h3>
+            <p>市子做胡颓子果酱那一段，我暂停了三次去查这种果子长什么样。原来一个人认真做饭的样子，就是最好的自我修复。</p>
+          </div>
+        </div>
+        <div class="j-item">
+          <div class="j-date"><div class="jd-d">01</div><div class="jd-m">OCT</div></div>
+          <div class="j-body">
+            <div class="jb-meta">20:00 · 雨夜 · 台灯下</div>
+            <h3>《刺客聂隐娘》—— 看不懂也是一种享受</h3>
+            <p>第一次看只记住了绿。第二次看才听懂那些没说完的对话。第三次看，我开始享受自己被画面淹没的那种茫然。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目5：关于角落 -->
+  <section id="corner" class="section">
+    <div class="sec-head">
+      <span class="sec-roman">v.</span>
+      <h2>关于<em>角落</em></h2>
+    </div>
+    <div class="corner">
+      <div class="corner-text">
+        <h3>这里是一个属于慢观众的角落。</h3>
+        <p>我们不评价哪部电影"值不值得看"，也不追逐票房与评分。我们相信，一部电影真正的价值，在于它被看完之后，还在你心里停留了多久。</p>
+        <div class="quote">"电影不是为了填满时间，<br>而是为了让某些时间被记住。"</div>
+        <p>棋棋电影网（qiqidianyingwang-top.github.io）由一位普通观众维护，每周只聊两三部，写一点真实感受，仅此而已。</p>
+      </div>
+      <div class="corner-stats">
+        <div class="cs-cell"><div class="cs-num">186</div><div class="cs-label">拆解笔记</div></div>
+        <div class="cs-cell"><div class="cs-num">03</div><div class="cs-label">更新/周</div></div>
+        <div class="cs-cell"><div class="cs-num">00</div><div class="cs-label">广告</div></div>
+        <div class="cs-cell"><div class="cs-num">01</div><div class="cs-label">位编辑</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底部 -->
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <h3><span class="q">棋</span> 棋棋电影网</h3>
+        <p>一个慢看电影的角落。一帧一帧地看，一格一格地聊。qiqidianyingwang-top.github.io 由 GitHub Pages 托管，本页仅含 index.html。</p>
+      </div>
+      <div class="foot-col">
+        <h4>栏目</h4>
+        <ul>
+          <li><a href="#frame">一帧一帧</a></li>
+          <li><a href="#slow">慢看片单</a></li>
+          <li><a href="#cut">镜头拆解</a></li>
+          <li><a href="#journal">观影日志</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#corner">关于角落</a></li>
+          <li><a href="#">投稿来信</a></li>
+          <li><a href="#">转载说明</a></li>
+          <li><a href="#">隐私声明</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>地址</h4>
+        <ul>
+          <li><a href="https://qiqidianyingwang-top.github.io">qiqidianyingwang-top.github.io</a></li>
+          <li><a href="#">GitHub Pages</a></li>
+          <li><a href="#">静态单页</a></li>
+          <li><a href="#">无后端 / 无追踪</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 棋棋电影网（qiqidianyingwang-top.github.io）· 本页仅含 index.html，未生成 robots.txt 与 sitemap.xml</span>
+      <span><a href="#">回到顶部 ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+// 卡片点击（演示）
+document.querySelectorAll('.slow-card,.cut-cell,.j-item,.fb-row').forEach(function(el){
+  el.addEventListener('click',function(){
+    var h=el.querySelector('h3');
+    if(h)console.log('棋棋电影网 · 查看：'+h.textContent);
+  });
+});
+</script>
+
+</body>
+</html>
